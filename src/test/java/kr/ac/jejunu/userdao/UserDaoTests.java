@@ -22,12 +22,10 @@ public class UserDaoTests {
     }
 
     @Test
-    public void testGet() throws SQLException, ClassNotFoundException {
+    public void testGet() throws SQLException {
         Integer id = 1;
         String name = "hulk";
         String password = "1234";
-        DaoFactory daoFactory = new DaoFactory();
-        UserDao userDao = daoFactory.userDao();
         User user = userDao.get(id);
         assertThat(user.getId(), is(id));
         assertThat(user.getName(), is(name));
@@ -35,12 +33,10 @@ public class UserDaoTests {
     }
 
     @Test
-    public void insert() throws SQLException, ClassNotFoundException {
+    public void insert() throws SQLException {
         User user = new User();
         user.setName("hulk");
         user.setPassword("1111");
-        DaoFactory daoFactory = new DaoFactory();
-        UserDao userDao = daoFactory.userDao();
         userDao.insert(user);
         assertThat(user.getId(), greaterThan(0));
         User insertedUser = userDao.get(user.getId());
