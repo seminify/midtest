@@ -6,9 +6,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class InsertStatementS implements StatementS {
+    private User user;
+
+    public InsertStatementS(User user) {
+        this.user = user;
+    }
+
     @Override
-    public PreparedStatement makeStatement(Object object, Connection connection) throws SQLException {
-        User user = (User) object;
+    public PreparedStatement makeStatement(Connection connection) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(
                 "insert into userinfo (name, password) values (?, ?)",
                 Statement.RETURN_GENERATED_KEYS

@@ -5,11 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DeleteStatementS implements StatementS {
+    private Integer id;
+
+    public DeleteStatementS(Integer id) {
+        this.id = id;
+    }
+
     @Override
-    public PreparedStatement makeStatement(Object object, Connection connection) throws SQLException {
-        Integer id=(Integer)object;
-        PreparedStatement preparedStatement;
-        preparedStatement = connection.prepareStatement(
+    public PreparedStatement makeStatement(Connection connection) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(
                 "delete from userinfo where id=?"
         );
         preparedStatement.setInt(1, id);
